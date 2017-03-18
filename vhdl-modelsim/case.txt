@@ -1,0 +1,41 @@
+library ieee;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity main is
+port(
+     DIN  : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+     CLK  : IN STD_LOGIC;
+     DOUT : OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
+end main;
+
+architecture main_arch of main is
+BEGIN
+    PROCESS(CLK)
+    BEGIN  
+        IF CLK'EVENT AND CLK='1' THEN
+            CASE DIN IS
+                WHEN "000" =>
+                    DOUT <= "00000001";
+                WHEN "001" =>
+                    DOUT <= "00000010";
+                WHEN "010" =>
+                    DOUT <= "00000100";
+                WHEN "011" =>
+                    DOUT <= "00001000";
+                WHEN "100" =>
+                    DOUT <= "00010000";                    
+                WHEN "101" =>
+                    DOUT <= "00100000";
+                WHEN "110" =>
+                    DOUT <= "01000000";
+                WHEN "111" =>
+                    DOUT <= "10000000";
+                WHEN OTHERS => NULL;    
+           END CASE; 
+        END IF;    
+      
+    END PROCESS;
+    
+END main_arch;

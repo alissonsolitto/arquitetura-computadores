@@ -1,0 +1,37 @@
+
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+
+ENTITY top IS
+    PORT(
+        A,B,C: IN STD_LOGIC;
+        S: OUT STD_LOGIC);
+        
+END top;
+
+ARCHITECTURE top_arch OF top IS
+--comp0nentes/macros
+COMPONENT pand IS
+    PORT(
+        E1: IN STD_LOGIC;
+        E2: IN STD_LOGIC;
+        S: OUT STD_LOGIC);
+        
+END COMPONENT;
+
+COMPONENT pinv IS
+    PORT(
+        E1: IN STD_LOGIC;
+        S: OUT STD_LOGIC);
+        
+END COMPONENT;
+--INTERCONEXAO ENTRE COMPONENTES
+signal S1, S2: std_logic;
+BEGIN
+---INSTANCIA DOS COMPONENTES
+pand1:pand port map (A,B,S1);
+pinv1:pinv port map (S1,S2);
+pand2:pand port map (S2,C,S);
+
+
+END top_arch ;
